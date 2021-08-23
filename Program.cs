@@ -1,68 +1,23 @@
 ﻿using System;
 
-Console.WriteLine("Welcome to the Enthusiastic Moose Simulator!");
-Console.WriteLine("--------------------------------------------");
-Console.WriteLine();
+Main();
 
-MooseSays("H I, I'M  E N T H U S I A S T I C!");
-MooseSays("I really am enthusiastic");
-
-CanadaQuestion();
-EnthusiasticQuestion();
-LoveCSharpQuestion();
-SecretQuestion();
-
-
-void CanadaQuestion()
+void Main()
 {
-    bool isTrue = MooseAsks("Is Canada real?");
-    if (isTrue)
-    {
-        MooseSays("Really? It seems very unlikely.");
-    }
-    else
-    {
-        MooseSays("I  K N E W  I T !!!");
-    }
-}
+    Console.WriteLine("Welcome to the Enthusiastic Moose Simulator!");
+    Console.WriteLine("--------------------------------------------");
+    Console.WriteLine();
 
-void EnthusiasticQuestion()
-{
-    bool isEnthusiastic = MooseAsks("Are you enthusiastic?");
-    if (isEnthusiastic)
-    {
-        MooseSays("Yay!");
-    }
-    else
-    {
-        MooseSays("You should try it!");
-    }
-}
+    // Let the moose speak!
+    MooseSays("H I, I'M  E N T H U S I A S T I C !");
+    MooseSays("I really am enthusiastic");
 
-void LoveCSharpQuestion()
-{
-    bool doesLoveCSharp = MooseAsks("Do you love C# yet?");
-    if (doesLoveCSharp)
-    {
-        MooseSays("Good job sucking up to your instructor!");
-    }
-    else
-    {
-        MooseSays("You will...oh, yes, you will...");
-    }
-}
+    // As a question
+    MooseQuestion("Is Canada real?", "really? It seems very unlikely.", "I KNEW IT!!!!");
+    MooseQuestion("Are you enthusiastic?", "Yay!", "You should try it!");
+    MooseQuestion("Do you love C# yet?", "Good job sucking up to your instructor!", "You will... oh, yes, you will...");
+    MooseQuestion("Do you want to know a secret?", "ME TOO!!!! I love secres... tell me one!", "Oh, no... secrets are the best, I love to share them!");
 
-void SecretQuestion()
-{
-    bool wantsSecret = MooseAsks("Do you want to know a secret?");
-    if (wantsSecret)
-    {
-        MooseSays("ME TOO!!!! I love secrets...tell me one!");
-    }
-    else
-    {
-        MooseSays("Oh, no...secrets are the best, I love to share them!");
-    }
 }
 
 void MooseSays(string message)
@@ -100,13 +55,13 @@ void MooseSays(string message)
 bool MooseAsks(string question)
 {
     // this line is writing to the console the question that is passed to the function
-    Console.Write($"{question} (Y/N): ");
+    Console.Write($"{question} ");
     // this line reads the code and then changes all the text to lower case
     string answer = Console.ReadLine().ToLower();
     //this while reads the answer given (either y or n) and makes sure to re-ask the question if the answer is not either y or n
     while (answer != "y" && answer != "n")
     {
-        Console.Write($"{question} (Y/N): ");
+        Console.Write($"{question} ");
         answer = Console.ReadLine().ToLower();
     }
 
@@ -120,5 +75,17 @@ bool MooseAsks(string question)
     }
 }
 
+void MooseQuestion(string question, string yesAnswer, string noAnswer)
+{
+    bool isTrue = MooseAsks($"{question} (Y/N): ");
+    if (isTrue)
+    {
+        MooseSays(yesAnswer);
+    }
+    else
+    {
+        MooseSays(noAnswer);
+    }
+}
 
 
